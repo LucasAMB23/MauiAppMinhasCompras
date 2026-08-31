@@ -82,5 +82,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
+	<Target Name="SignExecutable" AfterTargets="Build" Condition="'$(TargetFramework)'=='net10.0-windows10.0.19041.0'">
+		<Exec Command="&quot;C:\Users\lukin\.nuget\packages\microsoft.windows.sdk.buildtools\10.0.22621.756\bin\10.0.22621.0\x64\signtool.exe&quot; sign /sha1 DAE3DBE0C8C61DA65BA2EFA01089F2718361F293 /fd SHA256 /t http://timestamp.digicert.com &quot;$(TargetPath)&quot;"
+			  ContinueOnError="true" />
+	</Target>
 
 </Project>
